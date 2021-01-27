@@ -52,7 +52,7 @@ languageRouter
         req.user.id
       )
 
-      res.json(head.rows)
+      res.json(head.rows[0])
       next()
     } catch (error) {
       next(error)

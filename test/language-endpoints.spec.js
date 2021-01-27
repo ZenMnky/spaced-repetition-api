@@ -129,10 +129,10 @@ describe.only('Language Endpoints', function () {
         .set('Authorization', helpers.makeAuthHeader(testUser))
         .expect(200)
         .expect({
-          nextWord: headWord.original,
-          totalScore: 0,
-          wordCorrectCount: 0,
-          wordIncorrectCount: 0,
+          next_word: headWord.original,
+          total_score: 0,
+          word_correct_count: 0,
+          word_incorrect_count: 0,
         })
     })
   })
