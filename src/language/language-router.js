@@ -32,11 +32,12 @@ languageRouter
         req.app.get('db'),
         req.language.id,
       )
-
+      
       res.json({
         language: req.language,
         words,
       })
+      
       next()
     } catch (error) {
       next(error)
@@ -45,8 +46,17 @@ languageRouter
 
 languageRouter
   .get('/head', async (req, res, next) => {
-    // implement me
-    res.send('implement me!')
+    try {
+      const head = await LanguageService.getHead(
+        req.app.get('db'),
+        req.user.id
+      )
+
+      res.json(head.rows[0])
+      next()
+    } catch (error) {
+      next(error)
+    }
   })
 
 languageRouter

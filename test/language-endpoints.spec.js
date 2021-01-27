@@ -1,7 +1,7 @@
 const app = require('../src/app')
 const helpers = require('./test-helpers')
 
-describe('Language Endpoints', function () {
+describe.only('Language Endpoints', function () {
   let db
 
   const testUsers = helpers.makeUsersArray()
@@ -123,16 +123,16 @@ describe('Language Endpoints', function () {
       )
     })
 
-    it.skip(`responds with 200 and user's languages`, () => {
+    it(`responds with 200 and user's languages`, () => {
       return supertest(app)
         .get(`/api/language/head`)
         .set('Authorization', helpers.makeAuthHeader(testUser))
         .expect(200)
         .expect({
-          nextWord: headWord.original,
-          totalScore: 0,
-          wordCorrectCount: 0,
-          wordIncorrectCount: 0,
+          next_word: headWord.original,
+          total_score: 0,
+          word_correct_count: 0,
+          word_incorrect_count: 0,
         })
     })
   })
