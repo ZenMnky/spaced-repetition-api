@@ -28,6 +28,10 @@ const LanguageService = {
       )
       .where({ language_id })
   },
+  getHead(db, user_id){
+    return db
+    .raw("SELECT language.total_score, word.original, word.correct_count, word.incorrect_count FROM language JOIN word ON language.head = word.id WHERE language.user_id = ??", user_id)
+  }
 }
 
 module.exports = LanguageService
