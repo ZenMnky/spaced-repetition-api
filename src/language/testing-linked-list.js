@@ -1,4 +1,4 @@
-const LinkedList = require('./linked-list-service');
+const LinkedList = require('./linked-list');
 
 const questionList = new LinkedList.LinkedList();
 

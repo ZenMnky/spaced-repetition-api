@@ -1,11 +1,11 @@
 {
-  "name": "express-boilerplate",
+  "name": "spaced-repetition-api",
   "version": "0.0.1",
   "description": "",
   "main": "src/server.js",
   "scripts": {
     "test": "mocha --require test/setup.js",
-    "dev": "nodemon src/server.js",
+    "dev": "supervisor -- ./src/server.js -w",
     "migrate": "postgrator --config postgrator-config.js",
     "start": "node src/server.js",
     "predeploy": "npm audit",
@@ -14,6 +14,9 @@
   "keywords": [],
   "author": "Tom `tomatao` HT <tomht@thinkful.com>",
   "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -23,13 +26,13 @@
     "jsonwebtoken": "^8.5.0",
     "knex": "^0.21.16",
     "morgan": "^1.9.1",
-    "pg": "^7.8.2"
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "nodemon": "^2.0.7",
     "postgrator-cli": "^3.1.0",
-    "supertest": "^3.3.0"
+    "supertest": "^3.3.0",
+    "supervisor": "^0.12.0"
   }
 }
