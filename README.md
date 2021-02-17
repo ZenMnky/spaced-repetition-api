@@ -24,6 +24,7 @@
     - **ORM:** Knex.js
     - **Database:** PostgreSQL
 - 🌠 ___Other Attributes:___
+    - Single Page Application
     - Mobile First
     - Responsive
     - Semantic HTML (Accessability)

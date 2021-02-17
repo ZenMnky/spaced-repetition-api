@@ -10,6 +10,23 @@ class LinkedList {
         this.head = null;
     }
 
+    getAll() {
+        if(!this.head){
+            return null;
+        }
+
+        let node = this.head;
+        let allNodes = [];
+        while (node.next) {
+            allNodes.push(node.value);
+            node = node.next;
+        }
+
+        allNodes.push(node.value);
+
+        return allNodes;
+    }
+
     insertFirst(item){
         this.head = new _Node(item, this.head);
     }

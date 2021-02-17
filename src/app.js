@@ -20,9 +20,7 @@ app.use(helmet())
 app.use('/api/auth', authRouter)
 app.use('/api/language', languageRouter)
 app.use('/api/user', userRouter)
-app.use('/', (req, res) => {
-  res.status(200).send('This is the API for the spaced repetition app update.');
-})
+
 
 app.use(errorHandler)
 

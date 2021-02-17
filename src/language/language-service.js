@@ -31,6 +31,17 @@ const LanguageService = {
   getHead(db, user_id){
     return db
     .raw("SELECT word.original AS next_word, language.total_score AS total_score, word.correct_count AS word_correct_count, word.incorrect_count AS word_incorrect_count FROM language JOIN word ON language.head = word.id WHERE language.user_id = ??", user_id)
+  },
+  putLanguageWords(db, language_id, data) {
+    return db
+      .from('word')
+      .update({
+        next: data.next,
+        correct_count: data.correct_count,
+        incorrect_count: data.incorrect_count,
+        memory_value: data.memory_value
+      })
+      .where( id === language_id)
   }
 }
 
