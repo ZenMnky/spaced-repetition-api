@@ -1,6 +1,6 @@
 BEGIN;
 
-TRUNCATE
+TRUNCATE 
   "word",
   "language",
   "user";
@@ -10,7 +10,7 @@ VALUES
   (
     1,
     'admin',
-    'Dunder Mifflin Admin',
+    'Demo Account',
     -- password = "pass"
     '$2a$10$fCWkaGbt7ZErxaxclioLteLUgg4Q3Rp09WW0s/wSLxDKYsaGYUpjG'
   );
