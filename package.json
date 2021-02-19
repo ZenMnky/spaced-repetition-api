@@ -12,7 +12,7 @@
     "start": "node src/server.js",
     "migrate:production": "heroku run npm run migrate",
     "predeploy": "npm run migrate:production",
-    "deploy": "git push heroku main",
+    "deploy": "git push heroku master",
     "seed:production": "cat ./seeds/seed.tables.sql | heroku pg:psql"
   },
   "keywords": [],
