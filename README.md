@@ -1,7 +1,4 @@
 # Spaced Repetition API
-
-🚧 In Development 🚧    
-📆 Target Release Date: 2021.02.19
 ## Project Description
 
 🎯 **Task**  
@@ -28,6 +25,10 @@
     - Mobile First
     - Responsive
     - Semantic HTML (Accessability)
+
+## API Endpoints
+
+
 ## Local dev setup
 
 If using user `dunder-mifflin`:

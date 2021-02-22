@@ -7,13 +7,13 @@
   "scripts": {
     "test": "mocha --require test/setup.js",
     "dev": "supervisor -- ./src/server.js -w -i node_modules",
-    "migrate": "postgrator --config postgrator-config.js",
-    "migrate:test": "env NODE_ENV=test npm run migrate",
-    "start": "node src/server.js",
-    "migrate:production": "heroku run npm run migrate",
     "predeploy": "npm run migrate:production",
     "deploy": "git push heroku master",
-    "seed:production": "cat ./seeds/seed.tables.sql | heroku pg:psql"
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate:test": "env NODE_ENV=test npm run migrate",
+    "migrate:production": "heroku run npm run migrate",
+    "seed:production": "cat ./seeds/seed.tables.sql | heroku pg:psql",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "engines": {
