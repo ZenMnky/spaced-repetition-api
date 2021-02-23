@@ -1,4 +1,12 @@
 # Spaced Repetition API
+
+## API endpoints
+
+- /api/language - GET - get all words and the user's language data
+
+- /api/language/head - GET - get the user's next word
+
+- /api/language/guess - POST - submit the user's guess, and receive a response with data on the results, score, and next word 
 ## Project Description
 
 🎯 **Task**  

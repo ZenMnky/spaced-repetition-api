@@ -33,10 +33,57 @@ class LinkedList {
 
     return allNodes;
   }
-
-  insertFirst(item) {
+  insertFirst(item){
     this.head = new _Node(item, this.head);
   }
+
+  insertAt(nthPosition, itemToInsert) {
+      if (nthPosition < 0) {
+          throw new Error('Position error');
+      }
+      if (nthPosition === 0) {
+          this.insertFirst(itemToInsert);
+      }else {
+          // Find the node which we want to insert after
+          const node = this._findNthElement(nthPosition - 1);
+          const newNode = new _Node(itemToInsert, null);
+          newNode.next = node.next; 
+          node.next = newNode;
+      }
+  }
+  _findNthElement(position) {
+      let node = this.head;
+      for (let i=0; i<position; i++) {
+          node = node.next;
+      }
+      return node;
+  }
+  remove(item){ 
+    //if the list is empty
+    if (!this.head){
+        return null;
+    }
+    //if the node to be removed is head, make the next node head
+    if(this.head.value === item){
+        this.head = this.head.next;
+        return;
+    }
+    //start at the head
+    let currNode = this.head;
+    //keep track of previous
+    let previousNode = this.head;
+    while ((currNode !== null) && (currNode.value !== item)) {
+        //save the previous node 
+        previousNode = currNode;
+        currNode = currNode.next;
+    }
+    if(currNode === null){
+        console.log('Item not found');
+        return;
+    }
+    previousNode.next = currNode.next;
+}
+
 
   // build the linked list
   insert(item) {

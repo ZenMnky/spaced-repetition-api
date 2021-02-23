@@ -87,7 +87,7 @@ languageRouter
         req.app.get('db'),
         req.language.id,
       );
-      return await words;
+      return words;
     };
 
     const headWordId = req.language.head;
@@ -183,8 +183,8 @@ languageRouter
     // search through the word objects we just got
     // find the object whose id property is equivalent to
     // the id of the head word, represented by 'headWordId'
-    const headWord = {};
-    await Object.assign(headWord, words.find((node) => node.id === headWordId));
+    const headWord = words.find((node) => node.id === headWordId);
+    // Object.assign(headWord, words.find((node) => node.id === headWordId));
     /** Example of what is stored in headWord
      * headWord:  {
             id: 4,
@@ -197,12 +197,19 @@ languageRouter
             incorrect_count: 4
           }
      */
+    
 
     // build the linked list, populated with the words we just retrieved
     const wordsLinkedList = new LinkedList();
-    words.forEach(((node) => {
-      wordsLinkedList.insert(node);
-    }));
+    let word = headWord;
+    while (word){
+      wordsLinkedList.insert(word)
+      word = words.find(node => node.id === word.next )
+    }
+
+    //   words.forEach(((node) => {
+    //     wordsLinkedList.insert(node);
+    // }));
 
     /** Example data of wordsLinkedList post build
        *  LinkedList {
@@ -226,14 +233,17 @@ languageRouter
     // updates the words in the DB with w/e modifications were made to them
     // at the time the function is called
     const updateWords = async () => {
-      const words = await wordsLinkedList.all();
-      words.forEach(async (node) => {
+
+      const words = wordsLinkedList.all();
+      // note: technically we'd want to do this in a transaction
+      for (let node of words){
         await LanguageService.updateWords(
           req.app.get('db'),
           node.id,
           node,
         );
-      });
+      }
+   
     };
 
     // update words in the db first with updateWords()
@@ -261,7 +271,7 @@ languageRouter
 
     if (body.guess === headWord.translation) {
       try {
-        await wordsLinkedList.correct();
+        wordsLinkedList.correct();
         await LanguageService.updateTotalScore(
           req.app.get('db'),
           req.user.id,
