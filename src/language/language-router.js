@@ -227,7 +227,7 @@ languageRouter
     // at the time the function is called
     const updateWords = async () => {
       const words = await wordsLinkedList.all();
-      await words.forEach(async (node) => {
+      words.forEach(async (node) => {
         await LanguageService.updateWords(
           req.app.get('db'),
           node.id,
@@ -296,6 +296,8 @@ languageRouter
           req.user.id,
           nextWord.id,
         );
+
+        console.log('nextWord: ', nextWord)
 
         return res
           .status(200)
